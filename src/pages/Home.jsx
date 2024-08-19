@@ -19,8 +19,8 @@ export default function Home() {
         </Link>
       </nav>
 
-      <div className="px-8 ">
-        <div className="mx-auto max-w-2xl py-32 sm:py-40 lg:py-48">
+      <div className="px-8">
+        <div className="mx-auto max-w-2xl py-32 sm:py-40 lg:py-48 ">
           <div className="text-center">
             <h1 className="text-3xl font-bold  tracking-wide text-slate-300 sm:text-4xl">
               Dive Into Cinematic Adventures with CineWave
@@ -32,9 +32,12 @@ export default function Home() {
               entertainment and never miss a movie!
             </p>
             <div className="mt-12">
-              <button className="rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 shadow-sm hover:bg-white">
+              <Link
+                to="/login"
+                className="rounded-md bg-slate-50 px-4 py-2.5 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
+              >
                 Get started
-              </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -4,6 +4,14 @@
 
 @layer components {
   .background {
-    @apply bg-slate-900 min-h-screen bg-cover bg-center;
+    @apply bg-slate-900 min-h-screen bg-cover bg-center text-slate-50;
+  }
+
+  .input {
+    @apply w-72 sm:w-96 rounded-md border-none focus:outline-none focus:ring focus:ring-slate-500 text-slate-900 text-lg px-2 py-1.5;
+  }
+
+  .label {
+    @apply w-20 text-lg;
   }
 }
