@@ -5,8 +5,8 @@ import Logo from "../assets/images/Logo.png";
 
 export default function Home() {
   return (
-    <div className="bg-slate-900 min-h-screen">
-      <nav className="flex items-center justify-between bg-slate-700 px-6">
+    <div className="background">
+      <nav className="flex items-center justify-between bg-slate-800 px-6">
         <Link to="/">
           <img alt="" src={Logo} className="h-[8rem] w-auto" />
         </Link>
@@ -32,7 +32,7 @@ export default function Home() {
               entertainment and never miss a movie!
             </p>
             <div className="mt-12">
-              <button className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-slate-900 shadow-sm hover:bg-white">
+              <button className="rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 shadow-sm hover:bg-white">
                 Get started
               </button>
             </div>
