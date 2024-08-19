@@ -8,10 +8,10 @@
   }
 
   .input {
-    @apply w-72 sm:w-80 rounded-md border-none focus:outline-none focus:ring focus:ring-slate-500 text-slate-900 text-lg px-2 py-1.5;
+    @apply w-80 rounded-md border-none focus:outline-none focus:ring focus:ring-slate-500 text-slate-900 text-lg px-2 py-1.5;
   }
 
   .label {
-    @apply w-20 text-lg;
+    @apply text-lg;
   }
 }
