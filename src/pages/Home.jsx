@@ -1,6 +1,8 @@
 "use client";
 
 import { Link } from "react-router-dom";
+import Button from "../components/Button";
+
 import Logo from "../assets/images/Logo.png";
 
 export default function Home() {
@@ -32,12 +34,9 @@ export default function Home() {
               entertainment and never miss a movie!
             </p>
             <div className="mt-12">
-              <Link
-                to="/login"
-                className="rounded-md bg-slate-50 px-4 py-2.5 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
-              >
+              <Button to="/login" type="primary">
                 Get started
-              </Link>
+              </Button>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button";
 
 const LoginForm = () => {
   const loginForm = [
@@ -35,6 +36,9 @@ const LoginForm = () => {
             />
           </div>
         ))}
+        <div className="mt-12 ">
+          <Button type="small">Login</Button>
+        </div>
       </div>
     </div>
   );
