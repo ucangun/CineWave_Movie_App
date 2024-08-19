@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import Google from "../assets/images/Google.png";
 
 const LoginForm = () => {
   const loginForm = [
@@ -18,13 +19,10 @@ const LoginForm = () => {
   ];
 
   return (
-    <div className="py-36 sm:py-48 px-8">
-      <div className="mx-auto max-w-2xl py-20 sm:py-36 bg-slate-600 flex flex-col items-center justify-center rounded-lg">
+    <div className="py-2 sm:py-8 px-4">
+      <div className="mx-auto max-w-xl py-20 sm:py-24 bg-slate-600 flex flex-col items-center justify-center rounded-lg">
         {loginForm.map((field) => (
-          <div
-            key={field.id}
-            className="flex flex-col gap-3 mb-6 sm:flex-row sm:items-center sm:gap-4"
-          >
+          <div key={field.id} className="flex flex-col gap-3 mb-6 ">
             <label htmlFor={field.id} className="label">
               {field.label}
             </label>
@@ -37,13 +35,17 @@ const LoginForm = () => {
           </div>
         ))}
 
-        <div className="flex items-center gap-16 mt-2 sm:ml-20">
+        <div className="flex items-center gap-16 sm:gap-24 mt-2">
           <p>New to CineWave ?</p>
           <Button type="thin">Sign up now</Button>
         </div>
 
-        <div className="mt-8 sm:mt-12 ">
+        <div className="mt-8 sm:mt-12 flex gap-2 items-center">
           <Button type="small">Login</Button>
+          <Button type="small">
+            Continue with
+            <img src={Google} alt="Google Logo" className="inline" />
+          </Button>
         </div>
       </div>
     </div>

@@ -2,16 +2,13 @@
 
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
-
-import Logo from "../assets/images/Logo.png";
+import Logo from "../components/Logo";
 
 export default function Home() {
   return (
     <div className="background">
       <nav className="flex items-center justify-between bg-slate-800 px-6">
-        <Link to="/">
-          <img alt="" src={Logo} className="h-[8rem] w-auto" />
-        </Link>
+        <Logo type="primary" />
 
         <Button to="/login" type="secondary">
           Log in <span aria-hidden="true">&rarr;</span>
