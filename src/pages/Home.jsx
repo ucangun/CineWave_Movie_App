@@ -13,12 +13,9 @@ export default function Home() {
           <img alt="" src={Logo} className="h-[8rem] w-auto" />
         </Link>
 
-        <Link
-          to="/login"
-          className="text-md font-semibold underline  text-slate-50"
-        >
+        <Button to="/login" type="secondary">
           Log in <span aria-hidden="true">&rarr;</span>
-        </Link>
+        </Button>
       </nav>
 
       <div className="px-8">
