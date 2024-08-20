@@ -22,6 +22,11 @@
   cursor: pointer;
 }
 
+.slider-title {
+  font-size: 1.2rem;
+  margin: 1rem 1.5rem;
+}
+
 .slick-slide {
   padding: 0 0.8rem;
 }
