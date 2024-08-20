@@ -9,8 +9,10 @@ const Movies = () => {
   const popular = useFetchMovies("popular");
   const topRated = useFetchMovies("topRated");
   const upcoming = useFetchMovies("upcoming");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(localStorage.getItem("query") || "");
   const { searchedMovies } = useSearchQuery(query);
+
+  localStorage.setItem("query", query);
 
   return (
     <div className="flex flex-col pb-16 space-y-16 background">
