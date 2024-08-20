@@ -1,13 +1,15 @@
 import React from "react";
 import InputField from "./InputField";
 
-const Search = () => {
+const Search = ({ query, setQuery }) => {
   const search = [
     {
       id: "search",
       type: "text",
       placeholder: "Search for a Movie",
       label: "",
+      value: query,
+      onChange: (e) => setQuery(e.target.value),
     },
   ];
 

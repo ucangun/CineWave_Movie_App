@@ -34,3 +34,37 @@ export const useFetchMovies = (type) => {
 
   return movies;
 };
+
+export const useSearchQuery = (query) => {
+  const [searchedMovies, setSearchedMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!query) {
+      setSearchedMovies([]);
+      setLoading(false);
+      return;
+    }
+
+    const getSearchQuery = async () => {
+      setLoading(true);
+      try {
+        const { data } = await axios.get(
+          `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`
+        );
+        setSearchedMovies(data.results || []);
+        setError(null);
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getSearchQuery();
+  }, [query]);
+
+  return { searchedMovies, loading, error };
+};
