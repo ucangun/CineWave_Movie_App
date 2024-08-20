@@ -9,7 +9,6 @@ const Movies = () => {
   const popular = useFetchMovies("popular");
   const topRated = useFetchMovies("topRated");
   const upcoming = useFetchMovies("upcoming");
-  const latest = useFetchMovies("latest");
 
   return (
     <div className="flex flex-col pb-16 space-y-16 background">
