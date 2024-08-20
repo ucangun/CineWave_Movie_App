@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputField = ({ field }) => {
+const InputField = ({ field, value, onChange }) => {
   return (
     <>
       <label htmlFor={field.id} className="label">
@@ -11,6 +11,8 @@ const InputField = ({ field }) => {
         id={field.id}
         placeholder={field.placeholder}
         className="input"
+        value={field.value}
+        onChange={field.onChange}
       />
     </>
   );

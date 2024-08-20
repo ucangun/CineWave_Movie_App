@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Button = ({ children, to, type }) => {
+const Button = ({ children, to, type, onClick }) => {
   const base =
     "rounded-md bg-slate-50 px-4 py-3 text-lg font-semibold text-slate-900 shadow-sm hover:bg-slate-50  ";
 
@@ -22,7 +22,11 @@ const Button = ({ children, to, type }) => {
     );
   }
 
-  return <button className={styles[type]}>{children}</button>;
+  return (
+    <button onClick={onClick} className={styles[type]}>
+      {children}
+    </button>
+  );
 };
 
 export default Button;

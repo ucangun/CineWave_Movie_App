@@ -1,26 +1,35 @@
 import Button from "./Button";
 import Google from "../assets/images/Google.png";
 import InputField from "./InputField";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthProvider";
 
 const LoginForm = () => {
+  const { loginPassword, setLoginPassword, setLoginEmail, loginEmail, login } =
+    useContext(AuthContext);
+
   const loginForm = [
     {
       id: "email",
       type: "email",
       placeholder: "usermail@example.com",
       label: "E-Mail",
+      value: loginEmail,
+      onChange: (e) => setLoginEmail(e.target.value),
     },
     {
       id: "password",
       type: "password",
       placeholder: "password",
       label: "Password",
+      value: loginPassword,
+      onChange: (e) => setLoginPassword(e.target.value),
     },
   ];
 
   return (
-    <div className="py-2 sm:py-8 px-4">
-      <div className="mx-auto max-w-xl py-20 sm:py-24 bg-slate-600 flex flex-col items-center justify-center rounded-lg">
+    <div className="px-4 py-2 sm:py-8">
+      <div className="flex flex-col items-center justify-center max-w-xl py-20 mx-auto rounded-lg sm:py-24 bg-slate-600">
         <div className="flex flex-col gap-3 mb-6 ">
           {loginForm.map((field) => (
             <InputField key={field.id} field={field} />
@@ -34,8 +43,10 @@ const LoginForm = () => {
           </Button>
         </div>
 
-        <div className="mt-8 sm:mt-12 flex gap-2 items-center">
-          <Button type="small">Login</Button>
+        <div className="flex items-center gap-2 mt-8 sm:mt-12">
+          <Button type="small" onClick={login}>
+            Login
+          </Button>
           <Button type="small">
             Continue with
             <img src={Google} alt="Google Logo" className="inline" />
