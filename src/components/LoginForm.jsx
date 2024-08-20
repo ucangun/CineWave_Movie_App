@@ -7,8 +7,14 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-  const { loginPassword, setLoginPassword, setLoginEmail, loginEmail, login } =
-    useContext(AuthContext);
+  const {
+    loginPassword,
+    setLoginPassword,
+    setLoginEmail,
+    loginEmail,
+    login,
+    signInWithGoogle,
+  } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -62,7 +68,7 @@ const LoginForm = () => {
           >
             Login
           </Button>
-          <Button type="small">
+          <Button type="small" onClick={signInWithGoogle}>
             Continue with
             <img src={Google} alt="Google Logo" className="inline" />
           </Button>

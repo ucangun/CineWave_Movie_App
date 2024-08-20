@@ -4,6 +4,8 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from "firebase/auth";
 
 import { auth } from "./firebase-config";
@@ -68,6 +70,23 @@ const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
   };
 
+  // Google
+
+  const signInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const name = result.user.displayName;
+        const email = result.user.email;
+        const profilePic = result.user.photoURL;
+
+        localStorage.setItem("name", name);
+        localStorage.setItem("email", email);
+        localStorage.setItem("profilePic", profilePic);
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -88,6 +107,7 @@ const AuthProvider = ({ children }) => {
         logout,
         user,
         isAuthenticated,
+        signInWithGoogle,
       }}
     >
       {children}
