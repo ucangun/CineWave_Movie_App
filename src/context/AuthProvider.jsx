@@ -20,6 +20,9 @@ const AuthProvider = ({ children }) => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
+  // isAuth
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -38,6 +41,7 @@ const AuthProvider = ({ children }) => {
         registerEmail,
         registerPassword
       );
+
       console.log(user);
     } catch (error) {
       console.log(error.message);
@@ -52,6 +56,7 @@ const AuthProvider = ({ children }) => {
         loginPassword
       );
       console.log(user);
+      setIsAuthenticated(true);
     } catch (error) {
       console.log(error.message);
     }
@@ -59,6 +64,7 @@ const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     await signOut(auth);
+    setIsAuthenticated(false);
   };
 
   return (
@@ -80,6 +86,7 @@ const AuthProvider = ({ children }) => {
         login,
         logout,
         user,
+        isAuthenticated,
       }}
     >
       {children}
