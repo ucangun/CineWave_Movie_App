@@ -2,17 +2,16 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Search from "../components/Search";
 import { useFetchMovies } from "../services/MovieApi";
-import MovieCard from "../components/MovieCard";
+import CustomSlider from "../components/Slider";
 
 const Movies = () => {
   const movies = useFetchMovies();
+
   return (
-    <div className="background flex flex-col gap-8">
+    <div className="flex flex-col space-y-16 background">
       <Navbar />
       <Search />
-      {movies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} />
-      ))}
+      <CustomSlider movies={movies} />
     </div>
   );
 };

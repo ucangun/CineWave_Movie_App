@@ -4,7 +4,7 @@
 
 @layer components {
   .background {
-    @apply bg-slate-900 min-h-screen bg-cover bg-center text-slate-50;
+    @apply min-h-screen bg-center bg-cover bg-slate-900 text-slate-50;
   }
 
   .input {
@@ -14,4 +14,21 @@
   .label {
     @apply text-lg;
   }
+}
+
+.slider-container {
+  width: 90%;
+  margin: auto;
+  cursor: pointer;
+}
+
+.slick-slide {
+  padding: 0 0.8rem;
+}
+
+.slick-slide img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 1rem;
 }
