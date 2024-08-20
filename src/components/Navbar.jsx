@@ -5,10 +5,18 @@ import Switch from "./Switch";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import userLogo from "../assets/images/user.png";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleNotify = () => {
+    navigate("/");
+    toast.success("Logged Out");
+  };
+
   const { isAuthenticated, user, logout } = useContext(AuthContext);
   return (
     <nav className="flex items-center justify-between px-6 bg-slate-800 ">
@@ -42,10 +50,13 @@ const Navbar = () => {
               </MenuItem>
               <MenuItem>
                 <Link
-                  onClick={logout}
+                  onClick={() => {
+                    logout();
+                    handleNotify();
+                  }}
                   className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
                 >
-                  Sign out
+                  Logout
                 </Link>
               </MenuItem>
             </MenuItems>

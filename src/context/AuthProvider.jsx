@@ -23,6 +23,7 @@ const AuthProvider = ({ children }) => {
   // isAuth
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  // user
   const [user, setUser] = useState({});
 
   useEffect(() => {
