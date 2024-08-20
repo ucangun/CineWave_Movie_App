@@ -20,7 +20,7 @@ export const useFetchMovies = (type) => {
         const { data } = await axios.get(
           `${BASE_URL}/movie/${categories[type]}?api_key=${API_KEY}`
         );
-        console.log(data);
+        // console.log(data);
         setMovies(data.results);
       } catch (error) {
         console.error("Error fetching movies:", error);

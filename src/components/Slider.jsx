@@ -7,17 +7,16 @@ import MovieCard from "./MovieCard";
 
 function CustomSlider({ movies = [], title }) {
   const settings = {
-    focusOnSelect: true,
     infinite: true,
     slidesToShow: 4,
-    slidesToScroll: 1,
-    speed: 700,
+    slidesToScroll: 2,
+    speed: 600,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 1,
+          slidesToScroll: 2,
           infinite: true,
         },
       },

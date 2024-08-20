@@ -14,6 +14,10 @@
   .label {
     @apply text-lg;
   }
+
+  .iconBox {
+    @apply flex items-center gap-2 text-sm sm:text-[1rem] text-slate-950 font-semibold;
+  }
 }
 
 .slider-container {
