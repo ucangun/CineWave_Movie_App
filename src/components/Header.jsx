@@ -3,7 +3,7 @@ import Button from "./Button";
 const Header = () => {
   return (
     <div className="text-center">
-      <h1 className="text-3xl font-bold  tracking-wide text-slate-300 sm:text-4xl">
+      <h1 className="text-3xl font-bold tracking-wide text-slate-300 sm:text-4xl">
         Dive Into Cinematic Adventures with CineWave
       </h1>
       <p className="mt-10 text-lg leading-8 text-gray-400">

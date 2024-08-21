@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import defaultPoster from "../assets/images/Logo.png";
 
 const MovieCard = ({ movie }) => {
   const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
