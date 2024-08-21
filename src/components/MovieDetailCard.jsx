@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { TfiTimer } from "react-icons/tfi";
 import { IoLanguageSharp } from "react-icons/io5";
 import { SlCalender } from "react-icons/sl";
 import { BiCategory } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+import Heart from "react-animated-heart";
 
 const MovieDetailCard = ({ movie, video, posterUrl }) => {
+  const navigate = useNavigate();
+  const [isClick, setClick] = useState(false);
   return (
-    <div className="flex flex-col max-w-2xl gap-2 px-8 py-12 mx-auto rounded-lg bg-slate-600 ">
+    <div className="flex flex-col max-w-2xl gap-2 px-8 py-6 mx-auto rounded-lg cursor-pointer bg-slate-600 ">
       {movie ? (
         <>
-          <h1 className="mb-4 text-2xl font-semibold text-center text-slate-900">
+          <div className="flex items-center justify-between pl-4">
+            <button
+              className="w-8 h-8 rounded-full bg-slate-200 text-slate-900 "
+              onClick={() => navigate(-1)}
+            >
+              &larr;
+            </button>
+            <Heart isClick={isClick} onClick={() => setClick(!isClick)} />
+          </div>
+
+          <h1 className="mb-8 text-2xl font-semibold text-center text-slate-900 ">
             {movie.title}
           </h1>
 
@@ -20,7 +34,7 @@ const MovieDetailCard = ({ movie, video, posterUrl }) => {
               className="w-[12rem] sm:w-[14rem] h-[auto] object-cover rounded-lg self-center "
             />
             <div className="flex flex-col gap-4 px-2 py-4 ">
-              <p className="text-sm sm:text-[1rem] text-slate-200 ">
+              <p className="text-sm sm:text-[1rem] text-slate-200  ">
                 {movie.overview}
               </p>
               <div className="iconBox">
