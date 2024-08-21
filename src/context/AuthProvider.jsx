@@ -14,6 +14,8 @@ import { toastError, toastSuccess } from "../helpers/ToastNotify";
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
+
   // Register
   const [registerUserName, setRegisterUserName] = useState("");
   const [registerLastName, setRegisterLastName] = useState("");
@@ -29,28 +31,28 @@ const AuthProvider = ({ children }) => {
   // user
   const [user, setUser] = useState({});
 
-  const navigate = useNavigate();
+  const displayName = `${registerUserName} ${registerLastName}`;
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setIsAuthenticated(!!currentUser);
+      console.log(user);
     });
 
     // Clean up subscription on unmount
     return () => unsubscribe();
-  }, []);
+  }, [user]);
 
   const register = async () => {
     try {
-      const user = await createUserWithEmailAndPassword(
+      await createUserWithEmailAndPassword(
         auth,
         registerEmail,
         registerPassword
       );
       toastSuccess("Registered Successfully");
-      navigate("/");
-      console.log(user);
+      navigate("/login");
     } catch (error) {
       toastError(error.message);
     }
@@ -58,14 +60,9 @@ const AuthProvider = ({ children }) => {
 
   const login = async () => {
     try {
-      const user = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword
-      );
+      await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
       toastSuccess("Logged in Successfully");
       navigate("/");
-      console.log(user);
       setIsAuthenticated(true);
     } catch (error) {
       toastError(error.message);
@@ -90,14 +87,9 @@ const AuthProvider = ({ children }) => {
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        const name = result.user.displayName;
-        const email = result.user.email;
-        const profilePic = result.user.photoURL;
         setIsAuthenticated(true);
         toastSuccess("Logged in Successfully");
         navigate("/");
-
-        console.log({ name, email, profilePic });
       })
       .catch((err) => {
         toastError(err.message);

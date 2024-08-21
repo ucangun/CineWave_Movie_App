@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between px-6 bg-slate-800 ">
       <Logo type="primary" />
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5">
         <Switch />
         {isAuthenticated ? (
           <Menu as="div" className="relative ml-3">
@@ -21,7 +21,7 @@ const Navbar = () => {
               <MenuButton className="relative flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                 <img
                   alt="default user"
-                  src={user?.photoUrl || userLogo}
+                  src={user.photoURL || userLogo}
                   className="rounded-full w-9 h-9"
                 />
               </MenuButton>
