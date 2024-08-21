@@ -7,7 +7,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
-import { auth } from "./firebase-config";
+import { auth } from "../auth/firebase-config";
 import { useNavigate } from "react-router-dom";
 import { toastError, toastSuccess } from "../helpers/ToastNotify";
 
