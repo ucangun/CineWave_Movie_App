@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
   // user
   const [user, setUser] = useState({});
 
-  const displayName = `${registerUserName} ${registerLastName}`;
+  // const displayName = `${registerUserName} ${registerLastName}`;
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -62,7 +62,7 @@ const AuthProvider = ({ children }) => {
     try {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
       toastSuccess("Logged in Successfully");
-      navigate("/");
+      navigate("/movies");
       setIsAuthenticated(true);
     } catch (error) {
       toastError(error.message);
@@ -74,7 +74,7 @@ const AuthProvider = ({ children }) => {
       await signOut(auth);
       setIsAuthenticated(false);
       toastSuccess("Logged out Successfully");
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       toastError(error.message);
     }
@@ -89,7 +89,7 @@ const AuthProvider = ({ children }) => {
       .then((result) => {
         setIsAuthenticated(true);
         toastSuccess("Logged in Successfully");
-        navigate("/");
+        navigate("/movies");
       })
       .catch((err) => {
         toastError(err.message);
