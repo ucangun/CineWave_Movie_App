@@ -9,7 +9,7 @@ function App() {
       <AuthProvider>
         <AppRouter />
       </AuthProvider>
-      <ToastContainer autoClose={2000} />
+      <ToastContainer />
     </div>
   );
 }

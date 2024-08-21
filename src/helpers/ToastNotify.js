@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 
 export const toastSuccess = (msg) => {
   toast.success(msg, {
-    autoClose: 5000,
+    autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,

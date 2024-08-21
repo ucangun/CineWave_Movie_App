@@ -7,8 +7,9 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
-
 import { auth } from "./firebase-config";
+import { useNavigate } from "react-router-dom";
+import { toastError, toastSuccess } from "../helpers/ToastNotify";
 
 export const AuthContext = createContext();
 
@@ -28,6 +29,8 @@ const AuthProvider = ({ children }) => {
   // user
   const [user, setUser] = useState({});
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -44,10 +47,11 @@ const AuthProvider = ({ children }) => {
         registerEmail,
         registerPassword
       );
-
+      toastSuccess("Registered Successfully");
+      navigate("/");
       console.log(user);
     } catch (error) {
-      console.log(error.message);
+      toastError(error.message);
     }
   };
 
@@ -58,16 +62,24 @@ const AuthProvider = ({ children }) => {
         loginEmail,
         loginPassword
       );
+      toastSuccess("Logged in Successfully");
+      navigate("/");
       console.log(user);
       setIsAuthenticated(true);
     } catch (error) {
-      console.log(error.message);
+      toastError(error.message);
     }
   };
 
   const logout = async () => {
-    await signOut(auth);
-    setIsAuthenticated(false);
+    try {
+      await signOut(auth);
+      setIsAuthenticated(false);
+      toastSuccess("Logged out Successfully");
+      navigate("/");
+    } catch (error) {
+      toastError(error.message);
+    }
   };
 
   // Google
