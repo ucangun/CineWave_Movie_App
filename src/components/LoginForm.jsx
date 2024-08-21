@@ -3,8 +3,6 @@ import Google from "../assets/images/Google.png";
 import InputField from "./InputField";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const {
@@ -15,13 +13,6 @@ const LoginForm = () => {
     login,
     signInWithGoogle,
   } = useContext(AuthContext);
-
-  const navigate = useNavigate();
-
-  const handleNotify = () => {
-    navigate("/movies");
-    toast.success("Logged In");
-  };
 
   const loginForm = [
     {
@@ -59,13 +50,7 @@ const LoginForm = () => {
         </div>
 
         <div className="flex items-center gap-2 mt-8 sm:mt-12">
-          <Button
-            type="small"
-            onClick={() => {
-              login();
-              handleNotify();
-            }}
-          >
+          <Button type="small" onClick={login}>
             Login
           </Button>
           <Button type="small" onClick={signInWithGoogle}>
