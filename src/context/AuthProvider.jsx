@@ -34,6 +34,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setIsAuthenticated(!!currentUser);
     });
 
     // Clean up subscription on unmount
@@ -84,19 +85,23 @@ const AuthProvider = ({ children }) => {
 
   // Google
 
+  const provider = new GoogleAuthProvider();
+
   const signInWithGoogle = () => {
-    const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
         const name = result.user.displayName;
         const email = result.user.email;
         const profilePic = result.user.photoURL;
+        setIsAuthenticated(true);
+        toastSuccess("Logged in Successfully");
+        navigate("/");
 
-        localStorage.setItem("name", name);
-        localStorage.setItem("email", email);
-        localStorage.setItem("profilePic", profilePic);
+        console.log({ name, email, profilePic });
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        toastError(err.message);
+      });
   };
 
   return (

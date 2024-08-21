@@ -15,6 +15,7 @@ const SignUpForm = () => {
     setRegisterEmail,
     registerPassword,
     setRegisterPassword,
+    signInWithGoogle,
   } = useContext(AuthContext);
 
   const signUpForm = [
@@ -70,7 +71,7 @@ const SignUpForm = () => {
           <Button type="small" onClick={register}>
             Register
           </Button>
-          <Button type="small">
+          <Button type="small" onClick={signInWithGoogle}>
             Continue with
             <img src={Google} alt="Google Logo" className="inline" />
           </Button>
