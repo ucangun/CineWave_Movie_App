@@ -8,7 +8,7 @@ export default function Home() {
       <Navbar />
 
       <div className="px-8">
-        <div className="mx-auto max-w-2xl py-32 sm:py-40 lg:py-48 ">
+        <div className="max-w-2xl py-32 mx-auto sm:py-40 lg:py-48 ">
           <Header />
         </div>
       </div>

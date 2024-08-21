@@ -33,7 +33,7 @@ const MovieDetailCard = ({ movie, video, posterUrl }) => {
   };
 
   return (
-    <div className="flex flex-col max-w-2xl gap-2 px-8 py-6 mx-auto rounded-lg cursor-pointer bg-slate-600 ">
+    <div className="flex flex-col max-w-2xl gap-2 px-8 py-6 mx-auto rounded-lg cursor-pointer bg-slate-600 dark:bg-slate-800 ">
       {movie ? (
         <>
           <div className="flex items-center justify-between pl-4">
@@ -46,7 +46,7 @@ const MovieDetailCard = ({ movie, video, posterUrl }) => {
             <Heart isClick={isClick} onClick={() => handleAddFav(movie.id)} />
           </div>
 
-          <h1 className="mb-8 text-2xl font-semibold text-center text-slate-900 ">
+          <h1 className="mb-8 text-2xl font-semibold text-center text-slate-900 dark:text-slate-100 ">
             {movie.title}
           </h1>
 
@@ -57,7 +57,7 @@ const MovieDetailCard = ({ movie, video, posterUrl }) => {
               className="w-[12rem] sm:w-[14rem] h-[auto] object-cover rounded-lg self-center "
             />
             <div className="flex flex-col gap-4 px-2 py-4 ">
-              <p className="text-sm sm:text-[1rem] text-slate-200  ">
+              <p className="text-sm sm:text-[1rem] text-slate-200 dark:text-slate-300 mb-4 line-clamp-5 hover:line-clamp-none transition-all duration-200 ">
                 {movie.overview}
               </p>
               <div className="iconBox">

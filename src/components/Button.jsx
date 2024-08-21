@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Button = ({ children, to, type, onClick }) => {
   const base =
-    "rounded-md bg-slate-50 px-4 py-3 text-lg font-semibold text-slate-900 shadow-sm hover:bg-slate-50  ";
+    "rounded-md bg-slate-50 px-4 py-3 text-lg font-semibold text-slate-900 shadow-sm dark:bg-slate-800 dark:text-slate-100 ";
 
   const styles = {
     primary: base,

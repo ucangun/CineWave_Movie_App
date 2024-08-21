@@ -41,7 +41,9 @@ function CustomSlider({ movies = [], title }) {
   return (
     <div className="slider-container">
       {title && (
-        <h2 className="tracking-wide capitalize slider-title">{title}</h2>
+        <h2 className="tracking-wide capitalize slider-title dark:text-slate-900 dark:font-semibold ">
+          {title}
+        </h2>
       )}
       <Slider {...settings}>
         {movies.map((movie, index) => (

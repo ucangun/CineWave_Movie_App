@@ -35,7 +35,7 @@ const LoginForm = () => {
 
   return (
     <div className="px-4 py-2 sm:py-8">
-      <div className="flex flex-col items-center justify-center max-w-xl py-20 mx-auto rounded-lg sm:py-24 bg-slate-600">
+      <div className="flex flex-col items-center justify-center max-w-xl py-20 mx-auto rounded-lg sm:py-24 bg-slate-600 dark:bg-slate-800">
         <div className="flex flex-col gap-3 mb-6 ">
           {loginForm.map((field) => (
             <InputField key={field.id} field={field} />
