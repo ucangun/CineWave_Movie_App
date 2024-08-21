@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TfiTimer } from "react-icons/tfi";
 import { IoLanguageSharp } from "react-icons/io5";
 import { SlCalender } from "react-icons/sl";
@@ -9,6 +9,29 @@ import Heart from "react-animated-heart";
 const MovieDetailCard = ({ movie, video, posterUrl }) => {
   const navigate = useNavigate();
   const [isClick, setClick] = useState(false);
+  const [favMovies, setFavMovies] = useState(
+    () => JSON.parse(localStorage.getItem("favs")) || []
+  );
+
+  useEffect(() => {
+    if (movie) {
+      const isMovieInFavs = favMovies.includes(movie.id);
+      setClick(isMovieInFavs);
+    }
+  }, [favMovies, movie]);
+
+  const handleAddFav = () => {
+    if (movie) {
+      const updatedFavMovies = isClick
+        ? favMovies.filter((favId) => favId !== movie.id)
+        : [...favMovies, movie.id];
+
+      localStorage.setItem("favs", JSON.stringify(updatedFavMovies));
+      setFavMovies(updatedFavMovies);
+      setClick(!isClick);
+    }
+  };
+
   return (
     <div className="flex flex-col max-w-2xl gap-2 px-8 py-6 mx-auto rounded-lg cursor-pointer bg-slate-600 ">
       {movie ? (
@@ -20,7 +43,7 @@ const MovieDetailCard = ({ movie, video, posterUrl }) => {
             >
               &larr;
             </button>
-            <Heart isClick={isClick} onClick={() => setClick(!isClick)} />
+            <Heart isClick={isClick} onClick={() => handleAddFav(movie.id)} />
           </div>
 
           <h1 className="mb-8 text-2xl font-semibold text-center text-slate-900 ">
