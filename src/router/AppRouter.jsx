@@ -7,6 +7,7 @@ import Movies from "../pages/Movies";
 import MovieDetails from "../pages/MovieDetails";
 import Reset from "../pages/Reset";
 import PrivateRouter from "./PrivateRouter";
+import NotFound from "../pages/NotFound";
 
 const AppRouter = () => {
   return (
@@ -19,6 +20,7 @@ const AppRouter = () => {
         <Route path="" element={<MovieDetails />} />
       </Route>
       <Route path="/reset" element={<Reset />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
