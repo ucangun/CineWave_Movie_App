@@ -44,6 +44,10 @@ CineWave’s user authentication and navigation workflow ensures a seamless and 
 
 6. **🔑 Password Reset:**
    - Users can reset their passwords via a **password reset page**. This is managed through Firebase’s password reset functionality, and notifications are provided through `Toastify` 📧.
+  
+## Outcome
+
+![CineWave Movie App](https://github.com/user-attachments/assets/f5b2d64b-5083-440d-8003-ec2fb261e8f1)
 
 ## Project Structure
 
@@ -121,7 +125,7 @@ CineWave’s user authentication and navigation workflow ensures a seamless and 
 
 - **🌗 Dark Mode Toggle**: The application includes a dark mode toggle feature accessible via a button in the navbar, allowing users to switch between light and dark themes for a personalized viewing experience.
 
-## Outcome
+
 
 ## 🚀 Technologies Used
 
