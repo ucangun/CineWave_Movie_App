@@ -17,7 +17,6 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState();
 
   useEffect(() => {
@@ -25,7 +24,6 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         const { email, displayName, photoURL } = currentUser;
         setUser(email, displayName, photoURL);
-        setIsAuthenticated(!!currentUser);
       } else {
         setUser(false);
       }
@@ -52,7 +50,6 @@ const AuthProvider = ({ children }) => {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
       toastSuccess("Logged in Successfully");
       navigate("/movies");
-      setIsAuthenticated(true);
     } catch (error) {
       toastError(error.message);
     }
@@ -61,7 +58,6 @@ const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await signOut(auth);
-      setIsAuthenticated(false);
       toastSuccess("Logged out Successfully");
       navigate("/login");
     } catch (error) {
@@ -74,7 +70,6 @@ const AuthProvider = ({ children }) => {
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        setIsAuthenticated(true);
         toastSuccess("Logged in Successfully");
         navigate("/movies");
       })
@@ -90,7 +85,6 @@ const AuthProvider = ({ children }) => {
         login,
         logout,
         user,
-        isAuthenticated,
         signInWithGoogle,
       }}
     >
