@@ -3,6 +3,7 @@ import Google from "../assets/images/Google.png";
 import InputField from "./InputField";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthProvider";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   const { login, signInWithGoogle } = useContext(AuthContext);
@@ -38,8 +39,8 @@ const LoginForm = () => {
           ))}
         </div>
 
-        <div className="flex items-center gap-24 mt-2">
-          <p>New to CineWave ?</p>
+        <div className="flex items-center gap-16 mt-2">
+          <Link to="/reset">Forgot your Password ?</Link>
           <Button type="thin" to="/signup">
             Sign up now
           </Button>

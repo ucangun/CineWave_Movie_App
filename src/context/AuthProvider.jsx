@@ -7,6 +7,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   updateProfile,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "../auth/firebase-config";
 import { useNavigate } from "react-router-dom";
@@ -30,6 +31,8 @@ const AuthProvider = ({ children }) => {
     });
   }, []);
 
+  // register
+
   const register = async (registerEmail, registerPassword, displayName) => {
     try {
       await createUserWithEmailAndPassword(
@@ -45,6 +48,8 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  // login
+
   const login = async (loginEmail, loginPassword) => {
     try {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
@@ -55,6 +60,8 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  // logout
+
   const logout = async () => {
     try {
       await signOut(auth);
@@ -64,6 +71,8 @@ const AuthProvider = ({ children }) => {
       toastError(error.message);
     }
   };
+
+  // Sign in and up with Google
 
   const provider = new GoogleAuthProvider();
 
@@ -78,6 +87,19 @@ const AuthProvider = ({ children }) => {
       });
   };
 
+  // Reset Password
+
+  const resetPassword = async (email) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      toastSuccess("Password reset email sent successfully.");
+    } catch (error) {
+      toastError("Error sending password reset email:", error.message);
+    } finally {
+      navigate("/login");
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -86,6 +108,7 @@ const AuthProvider = ({ children }) => {
         logout,
         user,
         signInWithGoogle,
+        resetPassword,
       }}
     >
       {children}
