@@ -13,7 +13,7 @@ const Header = () => {
         never miss a movie!
       </p>
       <div className="mt-12">
-        <Button to="/login" type="primary">
+        <Button to="/movies" type="primary">
           Get started
         </Button>
       </div>
