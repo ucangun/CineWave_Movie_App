@@ -16,31 +16,23 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
-  const [registerUserName, setRegisterUserName] = useState("");
-  const [registerLastName, setRegisterLastName] = useState("");
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const [user, setUser] = useState({});
-
   const [loading, setLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setIsAuthenticated(!!currentUser);
-      console.log(user);
+    onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        const { email, displayName, photoURL } = currentUser;
+        setUser(email, displayName, photoURL);
+        setIsAuthenticated(!!currentUser);
+      } else {
+        setUser(false);
+      }
     });
+  }, []);
 
-    return () => unsubscribe();
-  }, [user]);
-
-  const register = async () => {
+  const register = async (registerEmail, registerPassword, displayName) => {
     setLoading(true);
     try {
       await createUserWithEmailAndPassword(
@@ -57,7 +49,7 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const login = async () => {
+  const login = async (loginEmail, loginPassword) => {
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
@@ -106,18 +98,6 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        registerUserName,
-        setRegisterUserName,
-        registerLastName,
-        setRegisterLastName,
-        registerEmail,
-        setRegisterEmail,
-        registerPassword,
-        setRegisterPassword,
-        loginEmail,
-        setLoginEmail,
-        loginPassword,
-        setLoginPassword,
         register,
         login,
         logout,

@@ -1,18 +1,14 @@
 import Button from "./Button";
 import Google from "../assets/images/Google.png";
 import InputField from "./InputField";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthProvider";
 
 const LoginForm = () => {
-  const {
-    loginPassword,
-    setLoginPassword,
-    setLoginEmail,
-    loginEmail,
-    login,
-    signInWithGoogle,
-  } = useContext(AuthContext);
+  const { login, signInWithGoogle } = useContext(AuthContext);
+
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
 
   const loginForm = [
     {
@@ -50,7 +46,7 @@ const LoginForm = () => {
         </div>
 
         <div className="flex items-center gap-2 mt-8 sm:mt-12">
-          <Button type="small" onClick={login}>
+          <Button type="small" onClick={() => login(loginEmail, loginPassword)}>
             Login
           </Button>
           <Button type="small" onClick={signInWithGoogle}>

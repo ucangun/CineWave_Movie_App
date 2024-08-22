@@ -1,22 +1,22 @@
 import Button from "./Button";
 import Google from "../assets/images/Google.png";
 import InputField from "./InputField";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthProvider";
 
 const SignUpForm = () => {
   const {
     register,
-    registerUserName,
-    setRegisterUserName,
-    registerLastName,
-    setRegisterLastName,
-    registerEmail,
-    setRegisterEmail,
-    registerPassword,
-    setRegisterPassword,
+
     signInWithGoogle,
   } = useContext(AuthContext);
+
+  const [registerUserName, setRegisterUserName] = useState("");
+  const [registerLastName, setRegisterLastName] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+
+  const displayName = `${registerUserName} ${registerLastName}`;
 
   const signUpForm = [
     {
@@ -68,7 +68,12 @@ const SignUpForm = () => {
         </div>
 
         <div className="flex items-center gap-2 mt-8 sm:mt-12">
-          <Button type="small" onClick={register}>
+          <Button
+            type="small"
+            onClick={() =>
+              register(registerEmail, registerPassword, displayName)
+            }
+          >
             Register
           </Button>
           <Button type="small" onClick={signInWithGoogle}>
