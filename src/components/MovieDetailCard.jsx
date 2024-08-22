@@ -33,7 +33,6 @@ const MovieDetailCard = ({ movie, video, posterUrl, error, loading }) => {
     }
   };
 
-  // Eğer loading durumu varsa Spinner gösterilecek
   if (loading) {
     return (
       <div className="flex items-center justify-center h-full">
@@ -42,7 +41,6 @@ const MovieDetailCard = ({ movie, video, posterUrl, error, loading }) => {
     );
   }
 
-  // Eğer bir hata varsa bu mesaj gösterilecek
   if (error) {
     return (
       <p className="text-center text-red-500">Error loading movie details.</p>
