@@ -13,17 +13,23 @@ const categories = {
 
 export const useFetchMovies = (type) => {
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getMovies = async () => {
+      setLoading(true);
       try {
         const { data } = await axios.get(
           `${BASE_URL}/movie/${categories[type]}?api_key=${API_KEY}`
         );
-        // console.log(data);
         setMovies(data.results);
+        setError(null);
       } catch (error) {
         console.error("Error fetching movies:", error);
+        setError(error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -32,12 +38,12 @@ export const useFetchMovies = (type) => {
     }
   }, [type]);
 
-  return movies;
+  return { movies, loading, error };
 };
 
 export const useSearchQuery = (query) => {
   const [searchedMovies, setSearchedMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {

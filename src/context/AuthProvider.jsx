@@ -16,22 +16,19 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
-  // Register
   const [registerUserName, setRegisterUserName] = useState("");
   const [registerLastName, setRegisterLastName] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
-  // Login
+
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  // isAuth
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // user
   const [user, setUser] = useState({});
 
-  // const displayName = `${registerUserName} ${registerLastName}`;
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -40,11 +37,11 @@ const AuthProvider = ({ children }) => {
       console.log(user);
     });
 
-    // Clean up subscription on unmount
     return () => unsubscribe();
   }, [user]);
 
   const register = async () => {
+    setLoading(true);
     try {
       await createUserWithEmailAndPassword(
         auth,
@@ -55,10 +52,13 @@ const AuthProvider = ({ children }) => {
       navigate("/login");
     } catch (error) {
       toastError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   const login = async () => {
+    setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
       toastSuccess("Logged in Successfully");
@@ -66,10 +66,13 @@ const AuthProvider = ({ children }) => {
       setIsAuthenticated(true);
     } catch (error) {
       toastError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   const logout = async () => {
+    setLoading(true);
     try {
       await signOut(auth);
       setIsAuthenticated(false);
@@ -77,14 +80,15 @@ const AuthProvider = ({ children }) => {
       navigate("/login");
     } catch (error) {
       toastError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
-
-  // Google
 
   const provider = new GoogleAuthProvider();
 
   const signInWithGoogle = () => {
+    setLoading(true);
     signInWithPopup(auth, provider)
       .then((result) => {
         setIsAuthenticated(true);
@@ -93,6 +97,9 @@ const AuthProvider = ({ children }) => {
       })
       .catch((err) => {
         toastError(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -117,6 +124,7 @@ const AuthProvider = ({ children }) => {
         user,
         isAuthenticated,
         signInWithGoogle,
+        loading,
       }}
     >
       {children}
