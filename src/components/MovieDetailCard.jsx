@@ -5,8 +5,9 @@ import { SlCalender } from "react-icons/sl";
 import { BiCategory } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Heart from "react-animated-heart";
+import Spinner from "./Spinner";
 
-const MovieDetailCard = ({ movie, video, posterUrl }) => {
+const MovieDetailCard = ({ movie, video, posterUrl, error, loading }) => {
   const navigate = useNavigate();
   const [isClick, setClick] = useState(false);
   const [favMovies, setFavMovies] = useState(
@@ -31,6 +32,22 @@ const MovieDetailCard = ({ movie, video, posterUrl }) => {
       setClick(!isClick);
     }
   };
+
+  // Eğer loading durumu varsa Spinner gösterilecek
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <Spinner />
+      </div>
+    );
+  }
+
+  // Eğer bir hata varsa bu mesaj gösterilecek
+  if (error) {
+    return (
+      <p className="text-center text-red-500">Error loading movie details.</p>
+    );
+  }
 
   return (
     <div className="flex flex-col max-w-2xl gap-2 px-8 py-6 mx-auto rounded-lg cursor-pointer bg-slate-600 dark:bg-slate-800 ">

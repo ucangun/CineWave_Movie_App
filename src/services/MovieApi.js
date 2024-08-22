@@ -38,7 +38,7 @@ export const useFetchMovies = (type) => {
     }
   }, [type]);
 
-  return { movies, loading, error };
+  return movies;
 };
 
 export const useSearchQuery = (query) => {

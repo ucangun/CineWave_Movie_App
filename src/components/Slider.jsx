@@ -11,6 +11,7 @@ function CustomSlider({ movies = [], title }) {
     slidesToShow: 4,
     slidesToScroll: 2,
     speed: 600,
+    lazyLoad: "ondemand",
     responsive: [
       {
         breakpoint: 1024,

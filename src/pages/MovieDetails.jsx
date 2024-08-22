@@ -55,19 +55,17 @@ const MovieDetails = () => {
     getMovieVideo(id);
   }, [id]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
   return (
     <div className="background">
       <Navbar />
       <div className="px-4 py-20">
-        <MovieDetailCard movie={movie} video={video} posterUrl={posterUrl} />
+        <MovieDetailCard
+          movie={movie}
+          video={video}
+          posterUrl={posterUrl}
+          loading={loading}
+          error={error}
+        />
       </div>
     </div>
   );

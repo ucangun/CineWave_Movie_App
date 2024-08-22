@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
     onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         const { email, displayName, photoURL } = currentUser;
-        setUser(email, displayName, photoURL);
+        setUser({ email, displayName, photoURL });
       } else {
         setUser(false);
       }
