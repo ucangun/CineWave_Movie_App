@@ -6,6 +6,7 @@ import {
   signOut,
   signInWithPopup,
   GoogleAuthProvider,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../auth/firebase-config";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +17,6 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState();
 
@@ -33,24 +33,21 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const register = async (registerEmail, registerPassword, displayName) => {
-    setLoading(true);
     try {
       await createUserWithEmailAndPassword(
         auth,
         registerEmail,
         registerPassword
       );
+      await updateProfile(auth.currentUser, { displayName: displayName });
       toastSuccess("Registered Successfully");
       navigate("/login");
     } catch (error) {
       toastError(error.message);
-    } finally {
-      setLoading(false);
     }
   };
 
   const login = async (loginEmail, loginPassword) => {
-    setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
       toastSuccess("Logged in Successfully");
@@ -58,13 +55,10 @@ const AuthProvider = ({ children }) => {
       setIsAuthenticated(true);
     } catch (error) {
       toastError(error.message);
-    } finally {
-      setLoading(false);
     }
   };
 
   const logout = async () => {
-    setLoading(true);
     try {
       await signOut(auth);
       setIsAuthenticated(false);
@@ -72,15 +66,12 @@ const AuthProvider = ({ children }) => {
       navigate("/login");
     } catch (error) {
       toastError(error.message);
-    } finally {
-      setLoading(false);
     }
   };
 
   const provider = new GoogleAuthProvider();
 
   const signInWithGoogle = () => {
-    setLoading(true);
     signInWithPopup(auth, provider)
       .then((result) => {
         setIsAuthenticated(true);
@@ -89,9 +80,6 @@ const AuthProvider = ({ children }) => {
       })
       .catch((err) => {
         toastError(err.message);
-      })
-      .finally(() => {
-        setLoading(false);
       });
   };
 
@@ -104,7 +92,6 @@ const AuthProvider = ({ children }) => {
         user,
         isAuthenticated,
         signInWithGoogle,
-        loading,
       }}
     >
       {children}
